@@ -1,26 +1,40 @@
-import React from 'react';
+import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      query:'Type Something!'
+    }
+  }
+  
+  updateInput = (input) => {
+    this.setState(() => ({
+      query: input
+    }))
+  }
+
+  render() {
+    const {query} = this.state
+    return (
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <h1 className="App-title">ReactND - Coding Practice</h1>
+        </header>
+        <div className="container">
+          <input type="text"
+           placeholder="Say Something"
+            onChange={(event) => 
+            this.updateInput(event.target.value)} />
+          <p className="echo">Echo:</p>
+          <p>{query}</p>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;
